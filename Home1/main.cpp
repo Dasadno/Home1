@@ -1,8 +1,11 @@
 #include <iostream>
 #include <string>
 #include <Windows.h>
+#include <time.h>
 bool isLeapYear(int year);
 
+template <typename GigaArbyz>
+void countElements(GigaArbyz arr[], int size, int& positiveCount, int& negativeCount, int& zeroCount);
 
 int daysBetweenDates(unsigned int day1, unsigned int month1, unsigned int year1, unsigned int day2, unsigned int month2, unsigned int year2);
 
@@ -14,13 +17,40 @@ int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
-
-	const int size = 3;
-	float array[size]{ 4.2,2.5,6.5 };
-    std::cout << arrMidCount(array, size) << '\n';
-
     int day1, month1, year1;
     int day2, month2, year2;
+
+    int positiveCount, negativeCount, zeroCount;
+
+	const int size = 6;
+	float array[size]{ -4.2, 2.5, 6.5, 0, -1, 52 };
+    std::cout << arrMidCount(array, size) << '\n';
+
+    countElements(array, size, positiveCount, negativeCount, zeroCount);
+
+    std::cout << "ѕоложительные элементы: " << positiveCount << std::endl;
+    std::cout << "ќтрицательные элементы: " << negativeCount << std::endl;
+    std::cout << "Ќулевые элементы: " << zeroCount << '\n\n';
+
+    std::cout << "¬ведите первую дату (формат: 4 12 2008) \n\n";
+    std::cout << "¬ведите день: ";
+    std::cin >> day1;
+    std::cout << "¬ведите мес€ц: ";
+    std::cin >> month1;
+    std::cout << "¬ведите год: ";
+    std::cin >> year1;
+
+    std::cout << '\n';
+
+
+    std::cout << "¬ведите вторую дату (формат: 4 12 2008) ";
+    std::cout << "¬ведите день: ";
+    std::cin >> day2;
+    std::cout << "¬ведите мес€ц: ";
+    std::cin >> month2;
+    std::cout << "¬ведите год: ";
+    std::cin >> year2;
+
 
     int difference = daysBetweenDates(day1, month1, year1, day2, month2, year2);
 
@@ -41,27 +71,27 @@ bool isLeapYear(int year) {
     }
 
 }
+template <typename GigaArbyz>
+void countElements(GigaArbyz arr[], int size, int& positiveCount, int& negativeCount, int& zeroCount) {
+
+    positiveCount = 0;
+    negativeCount = 0;
+    zeroCount = 0;
+
+    for (int i = 0; i < size; ++i) {
+        if (arr[i] > 0) {
+            positiveCount++;
+        }
+        else if (arr[i] < 0) {
+            negativeCount++;
+        }
+        else {
+            zeroCount++;
+        }
+    }
+}
 
 int daysBetweenDates(unsigned int day1, unsigned int month1, unsigned int year1, unsigned int day2, unsigned int month2, unsigned int year2) {
-
-    std::cout << "¬ведите первую дату (формат: 4 12 2008) \n\n";
-    std::cout << "¬ведите день: ";
-    std::cin >> day1;
-    std::cout << "¬ведите мес€ц: ";
-    std::cin >> month1;
-    std::cout << "¬ведите год: ";
-    std::cin >> year1;
-
-    std::cout << '\n';
-
-
-    std::cout << "¬ведите вторую дату (формат: 4 12 2008) ";
-    std::cout << "¬ведите день: ";
-    std::cin >> day2;
-    std::cout << "¬ведите мес€ц: ";
-    std::cin >> month2;
-    std::cout << "¬ведите год: ";
-    std::cin >> year2;
 
     if (day1 > 31 || day2 > 31)
     {
