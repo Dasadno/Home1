@@ -8,7 +8,7 @@ bool isLeap(int year) {
 	else
 	{
 		return false;
-	}
+	} 
 }
 
 
